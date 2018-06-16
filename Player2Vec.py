@@ -22,16 +22,17 @@ foot2index = {"Right":0, "Left":1}
 
 
 # In[13]:
+import torch
 
 
 def player2vec(id):
     if not id:
-        return
+        return torch.tensor([])
     resp = requests.get('http://www.easports.com/fifa/ultimate-team/api/fut/item?jsonParamObject={"id":"' + str(id) + '"}')
     obj = json.loads(resp.text)
     if obj["items"]:                           # if player data exists in sofifa
         player = obj["items"][0]
-        return (pos2index[player["position"]],
+        return torch.tensor([pos2index[player["position"]],
             int(player["birthdate"].split("-", 1)[0]),
             foot2index[player["foot"]],
             player["height"],
@@ -72,7 +73,8 @@ def player2vec(id):
             player["vision"],
             player["volleys"],
             player["weakFoot"],
-            player["rating"])
+            player["rating"]]).unsqueeze(0)
+    return torch.tensor([])
     
 
 
