@@ -24,53 +24,58 @@ foot2index = {"Right":0, "left":1}
 # In[13]:
 
 
-def player2vec(id)
+def player2vec(id):
+    if not id:
+        return
     resp = requests.get('http://www.easports.com/fifa/ultimate-team/api/fut/item?jsonParamObject={"id":"' + str(id) + '"}')
     obj = json.loads(resp.text)
-    player = obj["items"][0]
-    print(player["name"])
-    return (pos2index[player["position"]],
-        int(player["birthdate"].split("-", 1)[0]),
-        foot2index[player["foot"]],
-        player["height"],
-        player["weight"],
-        player["age"],
-        player["acceleration"],
-        player["aggression"],
-        player["agility"],
-        player["balance"],
-        player["ballcontrol"],
-        player["crossing"],
-        player["curve"],
-        player["dribbling"],
-        player["finishing"],
-        player["freekickaccuracy"],
-        player["gkdiving"],
-        player["gkhandling"],
-        player["gkkicking"],
-        player["gkpositioning"],
-        player["gkreflexes"],
-        player["headingaccuracy"],
-        player["interceptions"],
-        player["jumping"],
-        player["longpassing"],
-        player["longshots"],
-        player["marking"],
-        player["penalties"],
-        player["positioning"],
-        player["potential"],
-        player["reactions"],
-        player["shortpassing"],
-        player["shotpower"],
-        player["slidingtackle"],
-        player["sprintspeed"],
-        player["standingtackle"],
-        player["stamina"],
-        player["strength"],
-        player["vision"],
-        player["volleys"],
-        player["weakFoot"],
-        player["rating"])
+    try:
+        player = obj["items"][0]
+        print(player["name"])
+        return (pos2index[player["position"]],
+            int(player["birthdate"].split("-", 1)[0]),
+            foot2index[player["foot"]],
+            player["height"],
+            player["weight"],
+            player["age"],
+            player["acceleration"],
+            player["aggression"],
+            player["agility"],
+            player["balance"],
+            player["ballcontrol"],
+            player["crossing"],
+            player["curve"],
+            player["dribbling"],
+            player["finishing"],
+            player["freekickaccuracy"],
+            player["gkdiving"],
+            player["gkhandling"],
+            player["gkkicking"],
+            player["gkpositioning"],
+            player["gkreflexes"],
+            player["headingaccuracy"],
+            player["interceptions"],
+            player["jumping"],
+            player["longpassing"],
+            player["longshots"],
+            player["marking"],
+            player["penalties"],
+            player["positioning"],
+            player["potential"],
+            player["reactions"],
+            player["shortpassing"],
+            player["shotpower"],
+            player["slidingtackle"],
+            player["sprintspeed"],
+            player["standingtackle"],
+            player["stamina"],
+            player["strength"],
+            player["vision"],
+            player["volleys"],
+            player["weakFoot"],
+            player["rating"])
+    except:
+        return
     
 
 
